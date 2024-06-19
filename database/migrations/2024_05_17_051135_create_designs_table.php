@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('thumbnail', 255)->nullable();
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('category')->constrained('design_categories');
+            $table->integer('min_order')->default(1);
             $table->timestamps();
         });
     }

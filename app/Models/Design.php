@@ -17,6 +17,7 @@ class Design extends Model
         'price',
         'category',
         'created_by',
+        'min_order',
     ];
 
     public function user()

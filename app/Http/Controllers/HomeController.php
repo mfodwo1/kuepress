@@ -33,7 +33,7 @@ class HomeController extends Controller
 
     public function details(Design $design)
     {
-        return view('designs.details', compact('design'));
+        return view('store.details', compact('design'));
     }
 
 }

@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\CartController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Event::listen(Login::class, function ($event) {
+            app(CartController::class)->syncCart();
+        });
     }
+
+
 }

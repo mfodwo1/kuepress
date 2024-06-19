@@ -44,3 +44,14 @@ body{
         --tw-translate-x: 0;
     }
 }
+
+
+
+
+
+
+
+
+.drop-area.active {
+    border-color: #2563eb;
+}

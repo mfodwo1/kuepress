@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('categories/{designCategory}/', [HomeController::class, 'filter'])->name('filter');
 Route::get('design/{design}/', [HomeController::class, 'details'])->name('details');
+Route::get('cart/', [StoreController::class, 'viewCart'])->name('cart.details');
 
 Route::middleware([
     'auth:sanctum',

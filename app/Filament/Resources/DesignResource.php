@@ -31,7 +31,8 @@ class DesignResource extends Resource
         return $form
             ->schema([
                 Select::make('created_by')
-                    ->options(User::where('role', 'designer')->pluck('name', 'id'))
+                    ->options(User::all()->pluck('name', 'id'))
+//                    ->options(User::where('role', 'designer')->pluck('name', 'id'))
                     ->searchable(['title'])
                     ->preload()
                     ->required()
@@ -47,6 +48,10 @@ class DesignResource extends Resource
                     ->required()
                     ->columnSpan(1),
                 TextInput::make('price')
+                    ->required()
+                    ->numeric()
+                    ->columnSpan(1),
+                TextInput::make('min_order')
                     ->required()
                     ->numeric()
                     ->columnSpan(1),
@@ -79,6 +84,9 @@ class DesignResource extends Resource
                 ImageColumn::make('thumbnail')
                     ->searchable(),
                 TextColumn::make('price')
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('min_order')
                     ->sortable()
                     ->toggleable(),
                 TextColumn::make('categories.name')
