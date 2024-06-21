@@ -1,6 +1,31 @@
 import './bootstrap';
 
 
+//     function showToast(message, type) {
+//     const toastContainer = document.getElementById('toast-container');
+//
+//     if (toastContainer) {
+//     const toast = document.createElement('div');
+//     toast.className = `toast toast-${type} p-4 mb-4 rounded shadow-lg`;
+//     toast.innerText = message;
+//
+//     toastContainer.appendChild(toast);
+//
+//     setTimeout(() => {
+//     toast.remove();
+// }, 3000);
+// }
+// }
+//
+//     document.addEventListener('DOMContentLoaded', function() {
+// if(session('success')) {
+//     showToast("{{ session('success') }}", "success");
+// }
+//
+//     if(session('error')) {
+//         showToast("{{ session('error') }}", "error");
+//     }
+// });
 
 
 

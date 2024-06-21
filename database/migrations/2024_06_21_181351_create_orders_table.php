@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('address_id')->constrained('addresses');
+            $table->foreignId('address_id')->constrained('user_addresses');
+            $table->unsignedBigInteger('transaction_id')->nullable();
+            $table->string('reference', 50)->unique();
             $table->string('status', 50);
             $table->decimal('total_price', 10, 2);
             $table->timestamps();
+
+            $table->foreign('transaction_id')->references('id')->on('transactions')->restrictOnDelete();
         });
     }
 

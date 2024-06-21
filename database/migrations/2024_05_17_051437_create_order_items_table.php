@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->text('additional_instructions')->nullable();
+            $table->string('user_design');
             $table->timestamps();
         });
     }

@@ -1,14 +1,5 @@
 <div>
     <div class="mt-16">
-        @if (session()->has('message'))
-            <div class="bg-teal-500 text-white px-4 py-2">
-                {{ session('message') }}
-            </div>
-        @endif
-        @error('userImage')
-        <span class="error">{{ $message }}</span>
-        @enderror
-
         <div class="relative min-h-screen md:flex" data-dev-hint="container">
             <div class="sm:min-h-80 mt-16 md:pl-8 md:pt-6 md:w-1/2 relative">
                 <img src="{{ asset('storage/' . $design->thumbnail) }}" class="w-full rounded top-0 left-0" alt="thumbnail">
@@ -54,7 +45,7 @@
                                     <div class="py-4">
                                         <p class="text-sm pb-3">Minimum quantity for this product is {{ $design->min_order }}</p>
                                         <label for="quantity">Quantity</label>
-                                        <input type="number" wire:model="quantity" class="w-24 border text-center" min="{{ $design->min_order }}" />
+                                        <input type="number" wire:model="quantity" class="w-24 border text-center" />
                                         @error('quantity')
                                         <span class="error">{{ $message }}</span>
                                         @enderror
@@ -78,4 +69,39 @@
             </main>
         </div>
     </div>
+    {{--    Add custom toast notfication using alpine js--}}
+    <div x-data="{ toasts: [], show(message, type) { this.toasts.push({ message, type }); setTimeout(() => this.toasts.shift(), 3000); } }"
+         x-init="
+             @if(session('success'))
+             show('{{ session('success') }}', 'success');
+             @endif
+
+             @if(session('error'))
+             show('{{ session('error') }}', 'error');
+             @endif
+
+             @if($errors->any())
+             @foreach($errors->all() as $error)
+             show('{{ $error }}', 'error');
+             @endforeach
+             @endif
+         "
+         id="toast-container" class="fixed top-0 right-0 p-4 z-50">
+        <template x-for="(toast, index) in toasts" :key="index">
+            <div :class="`toast toast-${toast.type} p-4 mb-4 rounded shadow-lg`">
+                <template x-if="toast.type === 'success'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="toast-icon w-6 inline-block">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </template>
+                <template x-if="toast.type === 'error'">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="toast-icon w-6 inline-block">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75M12 15h.007M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </template>
+                <span x-text="toast.message"></span>
+            </div>
+        </template>
+    </div>
+
 </div>

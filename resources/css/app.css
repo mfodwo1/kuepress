@@ -2,6 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/*Custom Toast notifications */
+.toast {
+    animation: slideInRight 0.5s, fadeOut 0.5s 3s forwards;
+    max-width: 400px;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.toast-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.toast-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+#toast-container {
+    z-index: 9999;
+}
+
+/*End of Custom Toast notifications */
+
+
+
 [x-cloak] {
     display: none;
 }
