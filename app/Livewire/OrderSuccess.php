@@ -2,15 +2,16 @@
 
 namespace App\Livewire;
 
+use App\Models\Order;
 use Livewire\Component;
 
 class OrderSuccess extends Component
 {
-    public $orderId;
+    public $reference;
 
     public function mount($order)
     {
-        $this->orderId = $order;
+        $this->reference = Order::where('id', $order)->value('reference');
     }
 
     public function render()

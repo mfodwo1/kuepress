@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderDetail;
 use App\Http\Controllers\StoreController;
 use App\Livewire\OrderSuccess;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +30,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/order-success/{order}', OrderSuccess::class)->name('order.success');
+
+    Route::get('/orders-details', [OrderDetail::class, 'index'])->name('order-detail');
 
 });

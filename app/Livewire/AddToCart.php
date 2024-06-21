@@ -25,7 +25,7 @@ class AddToCart extends Component
 
     public function addToCart()
     {
-        try {
+
             $design = $this->design;
 
             $this->validate([
@@ -39,7 +39,7 @@ class AddToCart extends Component
                 $path = $this->userImage->store('uploads','public');
             }
 
-
+        try {
             // Add to cart with additional details
             Cart::add([
                 'id' => $design->id,
@@ -53,6 +53,9 @@ class AddToCart extends Component
                 ]
             ]);
 
+            //reset input fields
+            $this->userImage = null;
+            $this->userDescription = null;
             $this->dispatch('cart_updated');
             session()->flash('success', 'Added to cart successfully!');
         } catch (\Illuminate\Validation\ValidationException $e) {

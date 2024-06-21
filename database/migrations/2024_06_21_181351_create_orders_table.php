@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('address_id')->constrained('user_addresses');
             $table->unsignedBigInteger('transaction_id')->nullable();
             $table->string('reference', 50)->unique();
-            $table->string('status', 50);
+            $table->enum('status', ['pending', 'processing', 'delivering', 'completed'])->default('pending');
             $table->decimal('total_price', 10, 2);
             $table->timestamps();
 

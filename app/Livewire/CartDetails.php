@@ -28,7 +28,7 @@ class CartDetails extends Component
     public $savedAddresses = [];
     public $selectedAddressId = null;
 
-    protected $listeners = ['editDescription', 'addressAdded' => 'handleAddressAdded'];
+    protected $listeners = ['editDescription'];
 
     public function mount()
     {
@@ -54,7 +54,7 @@ class CartDetails extends Component
         $item = Cart::get($rowId);
         $this->currentItem = $item;
         $this->newDescription = $item->options->description;
-        $this->dispatchBrowserEvent('openEditModal');
+        $this->dispatch('openEditModal');
     }
 
     public function updateDescription()
@@ -78,7 +78,8 @@ class CartDetails extends Component
     public function removeFromCart($rowId)
     {
         Cart::remove($rowId);
-        $this->dispatchBrowserEvent('cart_updated');
+        $this->dispatch('cart_updated');
+        return redirect()->route('cart.details');
     }
 
     public function processCheckout()

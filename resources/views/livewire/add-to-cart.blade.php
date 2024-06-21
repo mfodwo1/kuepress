@@ -47,7 +47,7 @@
                                         <label for="quantity">Quantity</label>
                                         <input type="number" wire:model="quantity" class="w-24 border text-center" />
                                         @error('quantity')
-                                        <span class="error">{{ $message }}</span>
+                                        <span class="error text-red-500 block">{{ $message }}</span>
                                         @enderror
                                     </div>
 

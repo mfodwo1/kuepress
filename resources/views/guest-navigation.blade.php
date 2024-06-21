@@ -17,6 +17,13 @@
                         {{ __('Designs') }}
                     </x-nav-link>
                 </div>
+                @auth()
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link href="{{ route('order-detail') }}" :active="request()->routeIs('order-detail')">
+                            {{ __('My Orders') }}
+                        </x-nav-link>
+                    </div>
+                @endauth
             </div>
 
             <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -89,8 +96,6 @@
                         @endauth
                     </div>
                 @endif
-
-
             </div>
 
             <!-- Hamburger -->
@@ -112,6 +117,14 @@
                 {{ __('Designs') }}
             </x-responsive-nav-link>
         </div>
+        @auth()
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link href="{{ route('order-detail') }}" :active="request()->routeIs('order-detail')">
+                    {{ __('My Orders') }}
+                </x-responsive-nav-link>
+            </div>
+        @endauth
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
